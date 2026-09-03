@@ -37,11 +37,22 @@ We fetch `/api/events` for the last 7 days and bucket it into 2-hour windows, co
 `collector` looks up each visitor's country from their IP using `geoip-lite`, a free offline IP-to-country database that needs no API key or account, and stores it alongside their session data. The dashboard groups the last week of sessions by country and charts the top 10 individually, collapsing anything past that into a single "Other" slice so it stays readable.
 
 #### "How do they experience our site?"
-*Browser capabilities (Bar Chart) (1 weel, 4 capabilities w/ presence amongst all users 0-100%)*
+*Browser capabilities (Bar Chart) (1 week, 4 capabilities w/ presence amongst all users 0-100%)*
 
 `collector.js` runs simple client-side checks (`navigator.cookieEnabled`, a test image load, etc.) to detect whether cookies, JavaScript, images, and CSS actually work in each visitor's browser. The dashboard calculates what percentage of the last week's sessions had each capability enabled and charts it as one bar per capability.
 
 To supplement this data, allow easy testing, and to show recent activity we included tables for recent events and sessions at the bottom of the page. 
+
+## Part 4: Report
+
+#### Guiding Question:
+*"Should we implement 'graceful degradation' behavior on our website in case users do not have JavaScript enabled or experience issues with JS related features?"*
+
+#### Conclusion:
+
+Yes (Assuming collected data was valid and from real users). The primary data point we collected was the whether or not the user has JS enabled/working on their client. We did this via a tracking pixel embedded in every page in test.benyezhi.site (via noscript + img + GET request). This gave us a "JS capability" flag associated with each session. This data point along with cookie, image, and CSS capabilities across all users, was aggregated into a barchart. The ratio of users that can even render our JS served data is the most important piece of data we can collect regarding our guiding question which is given by the height of a capabilities corresponding height (0-100%). The actual data, however, is fudged, due to our lack of users as well as testing during development, but if we took this data at face value, only about 30-40% of our users can properly render the JS on our website which would be a strong argument for more robust noscript handling and general "graceful degradation" guided design. Client side activity vs script errors was a secondary data point used to capture if users encountered JS related issues given they could run JS in the first place. The ratio of activity vs errors gives a sense of how many issues are occuring vs the interactions occuring on the site.
+
+
 
 
 
