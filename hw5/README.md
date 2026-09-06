@@ -2,10 +2,10 @@
 
 #### Links
 
-Repo: https://github.com/BenKMichael/benyezhi-site
-Monitored Site: https://test.benyezhi.site
-Report Site: https://reporting.benyezhi.site
-Landing Site: https://benyezhi.site
+- Repo: https://github.com/BenKMichael/benyezhi-site
+- Monitored Site: https://test.benyezhi.site
+- Report Site: https://reporting.benyezhi.site
+- Landing Site: https://benyezhi.site
 
 #### AI Use:
 
