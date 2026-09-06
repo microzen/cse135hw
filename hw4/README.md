@@ -43,7 +43,7 @@ We fetch `/api/events` for the last 7 days and bucket it into 2-hour windows, co
 #### "How do they experience our site?"
 *Browser capabilities (Bar Chart) (1 week, 4 capabilities w/ presence amongst all users 0-100%)*
 
-`collector.js` runs simple client-side checks (`navigator.cookieEnabled`, a test image load, etc.) to detect whether cookies, JavaScript, images, and CSS actually work in each visitor's browser. The dashboard calculates what percentage of the last week's sessions had each capability enabled and charts it as one bar per capability.
+collector.js runs simple client-side checks (navigator.cookieEnabled, a test image load, etc.) to detect whether cookies, images, and CSS actually work in each visitor's browser. JavaScript can't be self-reported the same way, since a browser that can't run collector.js can't tell us it can't run collector.js so every page also carries a noscript tracking pixel, a 1x1 image GET request that only fires when JS is disabled, letting the collector log javascriptAllowed: false server-side for visits that would otherwise never show up at all. The dashboard calculates what percentage of the last week's sessions had each capability enabled and charts it as one bar per capability.
 
 To supplement this data, allow easy testing, and to show recent activity we included tables for recent events and sessions at the bottom of the page. 
 
